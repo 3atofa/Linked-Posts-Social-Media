@@ -1,0 +1,28 @@
+<section class="w-full ">
+    <!-- ~ Comment -->
+    <div class="max-h-[400px] overflow-y-auto">
+        @for (comment of commentsList; track comment._id) {
+        <div class="bg-gray-100 p-5 rounded-lg border mb-1 ">
+            <div class="flex justify-between items-center">
+                <div class="r flex items-center gap-2 mb-2">
+                    <img [src]="comment.commentCreator.photo" class="w-7 h-7 rounded-full" alt="">
+                    <p class="font-semibold">{{comment.commentCreator.name}}</p>
+                    <span class="text-gray-500 text-sm">{{comment.createdAt | date}}</span>
+                </div>
+                <i class="bi bi-three-dots"></i>
+            </div>
+
+            <p class="text-gray-500 ">{{comment.content}}</p>
+        </div>
+        }
+    </div>
+    <!-- ~ Add Comment -->
+    <form action="" [formGroup]="commentForm" (ngSubmit)="sendComment()">
+        <div class="flex items-center bg-gray-100 ps-3 py-2 pe-2 rounded-lg w-full border mt-1">
+            <textarea formControlName="content" class="h-10 p-1 rounded-lg w-full" placeholder="Add Your Comment" name="" id=""></textarea>
+            <i (click)="sendComment()" class="bi bi-send-fill text-xl  text-blue-600 ms-4 cursor-pointer rounded-full hover:bg-blue-200 px-2 py-1"></i>
+        </div>
+    </form>
+
+
+</section>

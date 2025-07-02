@@ -1,0 +1,105 @@
+<section class="mx-1 lg:w-1/2 px-2 py-5 rounded shadow border md:mx-auto bg-white">
+    <h3 class="text-sky-500 text-2xl font-semibold text-center">Register</h3>
+
+    <form [formGroup]="register" (ngSubmit)="submitForm()">
+        <!-- Name Field -->
+        <div class="mb-2">
+            <label class="text-sky-500 text-lg block" for="name">Name</label>
+            <input type="text" id="name" formControlName="name" placeholder="Name"
+                class="p-2 border rounded w-full bg-blue-100" />
+            <div *ngIf="register.get('name')?.touched && register.get('name')?.errors" class="text-red-500 text-sm">
+                <div *ngIf="register.get('name')?.errors?.['required']">Name is required</div>
+                <div *ngIf="register.get('name')?.errors?.['minlength']">
+                    Name must be at least 3 characters
+                </div>
+                <div *ngIf="register.get('name')?.errors?.['maxlength']">
+                    Name cannot exceed 20 characters
+                </div>
+            </div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="mb-2">
+            <label class="text-sky-500 text-lg block" for="email">Email</label>
+            <input type="email" id="email" formControlName="email" placeholder="Email"
+                class="p-2 border rounded w-full bg-blue-100" />
+            <div *ngIf="register.get('email')?.touched && register.get('email')?.errors" class="text-red-500 text-sm">
+                <div *ngIf="register.get('email')?.errors?.['required']">Email is required</div>
+                <div *ngIf="register.get('email')?.errors?.['email']">Please enter a valid email</div>
+            </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="mb-2">
+            <label class="text-sky-500 text-lg block" for="password">Password</label>
+            <input type="password" id="password" formControlName="password" placeholder="Password"
+                class="p-2 border rounded w-full bg-blue-100" />
+            <div *ngIf="register.get('password')?.touched && register.get('password')?.errors"
+                class="text-red-500 text-sm">
+                <div *ngIf="register.get('password')?.errors?.['required']">Password is required</div>
+                <div *ngIf="register.get('password')?.errors?.['pattern']">
+                    Password must contain at least 8 characters, including uppercase, lowercase, number, and special
+                    character
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="mb-2">
+            <label class="text-sky-500 text-lg block" for="rePassword">Confirm Password</label>
+            <input type="password" id="rePassword" formControlName="rePassword" placeholder="Confirm Password"
+                class="p-2 border rounded w-full bg-blue-100" />
+            <div *ngIf="register.get('rePassword')?.touched && register.get('rePassword')?.errors"
+                class="text-red-500 text-sm">
+                <div *ngIf="register.get('rePassword')?.errors?.['required']">Please confirm your password</div>
+                <div *ngIf="register.get('rePassword')?.errors?.['pattern']">
+                    Password must contain at least 8 characters, including uppercase, lowercase, number, and special
+                    character
+                </div>
+            </div>
+            <div *ngIf="register.errors?.['mismatch'] && (register.get('rePassword')?.touched || register.get('password')?.touched)"
+                class="text-red-500 text-sm">
+                Passwords do not match
+            </div>
+        </div>
+
+        <!-- Date of Birth Field -->
+        <div class="mb-2">
+            <label class="text-sky-500 text-lg block" for="date">Date of Birth</label>
+            <input type="date" id="date" formControlName="dateOfBirth" class="p-2 border rounded w-full bg-blue-100" />
+            <div *ngIf="register.get('dateOfBirth')?.touched && register.get('dateOfBirth')?.errors"
+                class="text-red-500 text-sm">
+                <div *ngIf="register.get('dateOfBirth')?.errors?.['required']">Date of Birth is required</div>
+            </div>
+        </div>
+
+        <!-- Gender Field -->
+        <div class="mb-2">
+            <div class="flex items-center gap-4 my-3">
+                <label class="text-sky-500 text-lg me-4">Gender</label>
+                <label class="flex items-center">
+                    <input type="radio" formControlName="gender" value="male" class="mr-2 text-sky-600 border-sky-600" /> Male
+                </label>
+                <label class="flex items-center">
+                    <input type="radio" formControlName="gender" value="female" class="mr-2 text-sky-600 border-sky-600" /> Female
+                </label>
+            </div>
+            <div *ngIf="register.get('gender')?.touched && register.get('gender')?.errors" class="text-red-500 text-sm">
+                <div *ngIf="register.get('gender')?.errors?.['required']">Please select a gender</div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex justify-between items-center">
+            <button routerLink="/login"
+                class="bg-sky-500  block px-10 text-white p-2 rounded hover:bg-sky-600 transition mt-4">
+                Back
+            </button>
+            <button type="submit"
+                class="bg-sky-500 ms-auto block px-10 text-white p-2 rounded hover:bg-sky-600 transition mt-4"
+                [disabled]="register.invalid">
+                Register
+            </button>
+        </div>
+    </form>
+</section>
