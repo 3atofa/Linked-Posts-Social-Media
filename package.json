@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:social-app-angular-19": "node dist/social-app-angular-19/server/server.mjs"
+    "serve:ssr:social-app-angular-19": "node dist/social-app-angular-19/server/server.mjs",
+    "build": "ng build --configuration production"
+
   },
   "private": true,
   "dependencies": {

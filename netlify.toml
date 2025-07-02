@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
   publish = "dist/social-app-angular-19"
-  
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
